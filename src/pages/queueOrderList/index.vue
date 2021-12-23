@@ -1,60 +1,16 @@
 <template lang="pug">
   .w-100
-    nav-bar(:title="'预约中'" :backVisible="true" :home-path="'/pages/index/main'")
+    nav-bar(:title="'开奖中'" :backVisible="true" :home-path="'/pages/index/main'")
     .w-100(v-if="isLogged")
       .p-20p.df-col-ac-jc.mt-50p(v-if="queues.length <= 0 || queues == undefined")
         .queue-none
-        .pf-subhead.mt-10p 您当前暂无预约
+        .pf-subhead.mt-10p 您当前暂无开奖信息
         .mt-10p.w-80
-          van-button(size="large" round custom-class="btn-minEdit" @click="toLineUpShop") 查看可预约的图书馆
-      .p-20p(v-else)
-        .bg-white.pt-10p.shadow.borRadius-5.border.mt-40p(v-for="(q, i) in queues" :key="i")
-          .text-center.p-10p(style="border-bottom: 1px dashed #ECEEF2")
-            .pf-subhead {{q.library.name}}
-            .mt-10p.text-black 您的预约桌号
-            .mt-10p.pf-title {{q.site}}
-
-          .my-20p.w-50.m-auto.text-center
-            div(v-if="q.queueProcess === 'waiting'")
-              van-button.w-50(size="large" round custom-class="btn-minEdit" @click="handleCancel(q)") 取消排队
-            div(v-if="q.queueProcess === 'cancel'")
-              span.pf-subhead 已取消
-              .mt-10p
-              van-button(size="large" round custom-class="btn-minEdit" @click="resubmit(q)") 重新排队取号
-            div(v-if="q.queueProcess === 'finished'")
-              span.pf-subhead 商家已叫号
-              .mt-10p
-              van-button(size="large" round custom-class="btn-minEdit" @click="toShop(q.shopId)") 查看商家
-            div(v-if="q.queueProcess === 'failed'")
-              .text-red
-                div 排队失败
-                div 非常抱歉，商家无法提供该服务
-
-          .bg-dark.p-20p.borRadius-b
-            .text-black {{q.library.name}}
-            .mt-10p.d-flex
-              div
-                .location.mr-5p
-              span {{q.library.address}}
-
-        .mt-20p.text-center 请准时到达
-        .mt-30p.w-50.m-auto
-          van-button(size="large" round custom-class="btn-white" @click="toOrder") 确认离开
-        van-popup(:show='showPop', position='center', overlay='false', @close='onClose' safe-area-inset-top="true" custom-style="width: 70% !important")
-          .borRadius-30
-            .p-20p
-              .df-row-ac-jb
-                .pf-subhead
-                .cancel(@click='onClose')
-              .mt-10p.text-center.pf-subhead.py-20p 请确认您是否要取消排队?
-            .df-row-ac
-              .flex-1.text-red.px-20p.py-10p.text-center(@click='onClose') 取消
-              .flex-1.bg-red.px-20p.py-10p.text-white.text-center(@click='cancel') 确认
-
+          van-button(size="large" round custom-class="btn-minEdit" @click="toLineUpShop") 查看历史开奖信息
     .w-100.mt-50p(v-else)
       .df-col-ac.p-20p
         .login-none
-        .mt-10p(v-if="!user") 请先登录，以查看预约。
+        .mt-10p(v-if="!user") 请先登录，以查看开奖信息。
         button.btn-main.mt-10p(v-if="!user" open-type="getUserInfo" @getuserinfo="checkUser" lang="zh_CN" type="primary" round @click="checkUser") 微信授权登录
 
 </template>

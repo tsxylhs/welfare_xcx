@@ -1,6 +1,6 @@
 <template lang="pug">
   .w-100
-    nav-bar(:title="'我的读书笔记'" )
+    nav-bar(:title="'我的开奖'" )
     .w-100(v-if="isLogged")
       .df-col-ac-jc.text-dark(v-if="epOrder" style="margin-top: 200rpx;")
         .ep-order
@@ -29,7 +29,7 @@
     .w-100.mt-50p(v-else)
       .df-col-ac.p-20p
         .login-none
-        .mt-10p 请先登录，以查看笔记。
+        .mt-10p 请先登录，以查看开奖记录。
         button.btn-main.mt-10p(v-if="!user" open-type="getUserInfo" @getuserinfo="checkUser" lang="zh_CN" type="primary" round @click="checkUser") 微信授权登录
 
 </template>

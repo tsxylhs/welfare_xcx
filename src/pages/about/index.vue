@@ -1,8 +1,8 @@
 <template lang="pug">
   .w-100
-    nav-bar(:title="'关于ElB'" :backVisible="true" :home-path="'/pages/index/main'")
+    nav-bar(:title="'关于小程序'" :backVisible="true" :home-path="'/pages/index/main'")
     .p-20p
-      .text-indent ElB是一个为学生提供网上预约，借阅图书，图书馆导航等功能。
+      .text-indent 该是一个为彩民随机生成幸运数。记录彩民购彩小程序
 </template>
 
 <script>

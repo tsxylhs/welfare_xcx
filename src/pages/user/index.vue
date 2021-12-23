@@ -18,23 +18,14 @@
               button.btn-main(v-if="!user" open-type="getUserInfo" @getuserinfo="checkUser" lang="zh_CN" type="primary" round @click="checkUser") 微信授权登录
         .shadow.borRadius-5.p-20p.mt-20p
           .df-row-ac-jb
-            .pf-subhead 我的借阅
+            .pf-subhead 我的开奖
             .df-row-ac
               .text-red.pointer(@click="toOrder(0)")  全部
               .red-arrow
           .df-row-jb.mt-10p
-            //.df-col-ac.pointer(@click="toOrder(1)")
-              .order1
-              .text-dark.mt-2 当前借阅(待实现)
-            //.df-col-ac.pointer(@click="toOrder(2)")
-              .order2
-              .text-dark.mt-2 历史借阅(待实现)
-            //.df-col-ac.pointer(@click="toOrder(4)")
-              .order4
-              .text-dark.mt-2 已逾期(待实现)
             .df-col-ac.pointer(@click="scanQrCode")
               .order5
-              .text-dark.mt-2 扫码开柜
+              .text-dark.mt-2 扫码兑奖
       .pl-20p
       .pl-20p
         .df-row-ac-jb.py-20p.border-bottom(@click="toinfom")
@@ -46,7 +37,7 @@
         .df-row-ac-jb.py-20p.border-bottom(@click="toAbout")
           .df-row-ac
             .info
-            span.ml-10p.fs-16 关于ELB
+            span.ml-10p.fs-16 关于小程序
           .arrow.pr-20p
     van-toast#van-toast
 </template>

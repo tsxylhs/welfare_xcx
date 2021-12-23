@@ -1,8 +1,8 @@
 <template lang="pug">
   .w-100
-    nav-bar(:title="'预约位置'" :back-visible="true" :home-path="'/pages/index/main'")
+    nav-bar(:title="'我的运势'" :back-visible="true" :home-path="'/pages/index/main'")
     .mt-20p.df-col-ac-jc(v-if="domain.length === 0")
-      span 暂无图书馆可预约
+      span 暂无
     .first-padding
       .d-flex.border-bottom.pa( v-if="domain.length !== 0" v-for="(item, index) in domain" :key="index" @click="onChange(item)")
         //img( :src="item.cover.prefixUri + item.cover.relativePath" style="width:60px;height:60px")

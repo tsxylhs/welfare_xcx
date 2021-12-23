@@ -1,32 +1,32 @@
 <template lang="pug">
   .w-100
-    nav-bar(:title="'ElB自助系统'")
+    nav-bar(:title="'Welfare lottery'")
     .bg-top.w-100.df-row-jc(style="position: relative")
       .bg-white.py-20p.w-90.border.borRadius-5.shadow.df-row-ac-jb.buttonBg(style="position: absolute;bottom:5%")
         .flex-1.df-col-ac.px-10p.border-right(@click="toLine")
           .icon-delivery
-          .mt-10p.text-black 我的借阅
+          .mt-10p.text-black 我的彩票
         .flex-1.df-col-ac.px-10p.border-right(@click="toLinelibrary")
           .icon-qrcode
-          .mt-10p.text-black 二维码
+          .mt-10p.text-black 已开奖
         .flex-1.df-col-ac.px-10p.border-right(@click="toLineUp")
           .calendar
-          .mt-10p.text-black 预约位置
+          .mt-10p.text-black 幸运数
         div.flex-1.df-col-ac(@click="toQueue")
           .df-col-ac.px-10p
             .order(style="position: relative")
               .bg-red.px-5p.text-white.borRadius-5.py-2p.text-center(style="position: absolute;right: -75%;top: -5px;width:15px" v-if="queueTotal && queueTotal > 0") {{queueTotal}}
-            div.mt-5p.text-black 预约中
+            div.mt-5p.text-black 已中奖
     .p-10p
-      van-search(@search="search" placeholder="请输图书馆名称")
+      van-search(@search="search" placeholder="请输路名查询彩票站")
       div
         .df-row-ac-jb
           div
-            .pf-subhead 附近图片书馆
+            .pf-subhead 附近的彩票站
           van-dropdown-menu.pr-10p(active-color='#FF7012')
             van-dropdown-item(v-model='val1', :options='option1' @change="changeRange" icon="")
       .mt-20p.df-col-ac-jc(v-if="domain.length === 0")
-        span 暂无图书馆
+        span 暂无彩票站
         span 尝试扩大筛选距离?
       .first-padding
         .d-flex.border-bottom.pa( v-if="domain.length !== 0" v-for="(item, index) in domain" :key="index" @click="onChange(item)")
