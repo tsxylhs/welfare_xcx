@@ -4,17 +4,17 @@
     .w-100(v-if="isLogged")
       .df-col-ac-jc.text-dark(v-if="epOrder" style="margin-top: 200rpx;")
         .ep-order
-        .mt-10p.mr-20p 还没有笔记
+        .mt-10p.mr-20p 还没有开奖
       ul.last-border-2(v-if="!epOrder")
         li.pl-20p.py-20p(@click="toDetail(ord)" v-for="(ord,ins) in domain" :key="ins")
           .df-row-ac-jb.pr-20p
             .df-row-ac
               //.merchant
-              .pf-subheadp 笔记编号：{{ord.id}}
+              .pf-subheadp 开奖日期：{{ord.id}}
           .mt-10p.d-flex.pr-20p.border-bottom.py-10p
             .ml-10p.py-5p.flex-1
               .df-row-jb.pf-subhead
-                .pf-subhead 标题：{{ord.title}}
+                .pf-subhead 类型：{{ord.title}}
                 .ml-20p
                   div
                     span 《{{ord.bookName}}》
