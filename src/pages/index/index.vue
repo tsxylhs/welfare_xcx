@@ -77,18 +77,10 @@
         id: '0',
         isActive: 0,
         firstCagories: [],
-        images: [
-          {
-            url: 'https://mtms.letsit.vip/bn1.png'
-          },
-          {
-            url: 'https://mtms.letsit.vip/bn1.png'
-          }
-        ],
         domain: [],
         data: Data,
         shop: {
-          name: '未选择图书馆'
+          name: '未选择彩票店'
         },
         shopId: '0',
         address: '',
@@ -205,7 +197,7 @@
             this.id = item.id
           }
         })
-        wx.setStorageSync('libraryId', this.id)
+        wx.setStorageSync('welfareId', this.id)
         wx.navigateTo({
           url: '/pages/kind/main'
         })
