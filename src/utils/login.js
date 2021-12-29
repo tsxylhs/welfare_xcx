@@ -12,46 +12,31 @@ export function loginInfo (e, t, reback) {
 
 function doLogin (t, reback) {
   let that = t
-  // 查看是否授权
-  wx.getSetting({
+  wx.getUserProfile({
     success (res) {
-      if (res.authSetting['scope.userInfo']) {
-        that.isHide = false
-        wx.getUserInfo({
-          success (res) {
-            that.userInfo = res.userInfo
-            that.userInfo.encryptedData = res.encryptedData
-            that.userInfo.errMsg = res.errMsg
-            that.userInfo.iv = res.iv
-            that.userInfo.rowData = res.rawData
-            that.userInfo.signature = res.signature
-            console.log('UserInfo', res.userInfo)
-            wx.login({
-              success: function (res) {
-                if (res.code) {
-                  wx.setStorageSync('code', res.code)
-                  that.userInfo.code = res.code
-                  console.log('携带 userinfo 登录', res)
-                  API.login(that.userInfo).then((res) => {
-                    that.user = res
-                    wx.setStorageSync('user', res)
-                    reback()
-                  }).catch(() => {
-                  })
-                } else {
-                  console.log('获取用户登录信息失败！')
-                }
-              }
+      that.userInfo = res.userInfo
+      debugger
+      console.log('UserInfo', res.userInfo)
+      wx.login({
+        success: function (res) {
+          if (res.code) {
+            wx.setStorageSync('code', res.code)
+            that.userInfo.code = res.code
+            console.log('携带 userinfo 登录', res)
+            API.login(that.userInfo).then((res) => {
+              that.user = res
+              wx.setStorageSync('user', res)
+              reback()
+            }).catch(() => {
             })
-          },
-          fail (err) {
-            console.log(err)
+          } else {
+            console.log('获取用户登录信息失败！')
           }
-        })
-      } else {
-        // 用户没有授权
-        that.isHide = true
-      }
+        }
+      })
+    },
+    fail (err) {
+      console.log(err)
     }
   })
 }

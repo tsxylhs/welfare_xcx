@@ -14,8 +14,7 @@
                 .merchant
                 .text-muted.ml-5p(v-if="!shopId")  当前:{{user.shopName || '未设置门店'}}
                 .text-muted.ml-5p(v-if="shop.name")  当前:{{shop.name || '未设置门店'}}
-            div
-              button.btn-main(v-if="!user" open-type="getUserInfo" @getuserinfo="checkUser" lang="zh_CN" type="primary" round @click="checkUser") 微信授权登录
+              button.btn-main(v-if="!user" open-type="getUserInfo" @getuserinfo="checkUser" lang="zh_CN" type="primary" round @bindtap="checkUser") 微信授权登录
         .shadow.borRadius-5.p-20p.mt-20p
           .df-row-ac-jb
             .pf-subhead 我的开奖
