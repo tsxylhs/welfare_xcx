@@ -14,7 +14,7 @@
                 .merchant
                 .text-muted.ml-5p(v-if="!shopId")  当前:{{user.shopName || '未设置门店'}}
                 .text-muted.ml-5p(v-if="shop.name")  当前:{{shop.name || '未设置门店'}}
-              button.btn-main(v-if="!user" open-type="getUserInfo" @getuserinfo="checkUser" lang="zh_CN" type="primary" round @bindtap="checkUser") 微信授权登录
+              button.btn-main(v-if="!user" open-type="getUserInfo" @getuserinfo="bindGetUserInfo" lang="zh_CN" type="primary" round @click="bindGetUserInfo") 微信授权登录
         .shadow.borRadius-5.p-20p.mt-20p
           .df-row-ac-jb
             .pf-subhead 我的开奖
@@ -44,7 +44,7 @@
   import NavBar from '@/components/NavBar.vue'
   import {loginInfo, CallPhone} from '../../utils/login'
   import Toast from '../../../static/vant/toast/toast'
-
+  import API from '../../api/api'
   export default {
     name: 'AlarmInfo',
     components: {
@@ -70,6 +70,26 @@
       }
     },
     methods: {
+      bindGetUserInfo () {
+        // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+        // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+        wx.getUserProfile({
+          desc: '获取你的昵称、头像、地区及性别',
+          success: res => {
+            // todo add wx.login()
+            console.log(JSON.stringify(res))
+            API.login(res).then((res) => {
+              this.user = res
+              wx.setStorageSync('user', res)
+              // console.info('success')
+            }).catch(() => {})
+          },
+          fail: res => {
+            console.log(res)
+            // 拒绝授权
+          }
+        })
+      },
       saveImage () {
         // debugger
         var that = this
