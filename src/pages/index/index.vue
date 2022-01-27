@@ -3,16 +3,16 @@
     nav-bar(:title="'Welfare lottery'")
     .bg-top.w-100.df-row-jc(style="position: relative")
       .bg-white.py-20p.w-90.border.borRadius-5.shadow.df-row-ac-jb.buttonBg(style="position: absolute;bottom:5%")
-        .flex-1.df-col-ac.px-10p.border-right(@click="toLine")
+        .flex-1.df-col-ac.px-10p.border-right(@click="")
           .icon-delivery
           .mt-10p.text-black 我的彩票
-        .flex-1.df-col-ac.px-10p.border-right(@click="toLinelibrary")
+        .flex-1.df-col-ac.px-10p.border-right(@click="")
           .icon-qrcode
           .mt-10p.text-black 已开奖
-        .flex-1.df-col-ac.px-10p.border-right(@click="toLineUp")
+        .flex-1.df-col-ac.px-10p.border-right(@click="")
           .calendar
           .mt-10p.text-black 幸运数
-        div.flex-1.df-col-ac(@click="toQueue")
+        div.flex-1.df-col-ac(@click="")
           .df-col-ac.px-10p
             .order(style="position: relative")
               .bg-red.px-5p.text-white.borRadius-5.py-2p.text-center(style="position: absolute;right: -75%;top: -5px;width:15px" v-if="queueTotal && queueTotal > 0") {{queueTotal}}
@@ -31,13 +31,13 @@
       .first-padding
         .d-flex.border-bottom.pa( v-if="domain.length !== 0" v-for="(item, index) in domain" :key="index" @click="onChange(item)")
           //img( :src="item.cover.prefixUri + item.cover.relativePath" style="width:60px;height:60px")
-          img(:src="item.image" style="width:60px;height:60px")
+          img(:src="item.imageUrl" style="width:60px;height:60px")
           .df-col-jb.flex-1.ml-20p
             div.df-row-jb
               .fs-16.flex-1(style="font-weight:bold") {{item.name}}
             .df-row-jb.mt-10p.text-dark
-              .fs-14.flex-1.text-overflow2 {{item.address}}
-              .fs-14.ml-10p {{item.distanceDisplay }}
+              .fs-14.flex-1.text-overflow2 {{item.location}}
+              .fs-14.ml-10p {{item.distance }}
     van-toast#van-toast
 </template>
 
@@ -46,7 +46,6 @@
   import Swiper from '@/components/swiper'
   import Data from '@/utils/data'
   import API from '@/api/api'
-  import {loginInfo} from '../../utils/login'
 
   export default {
     components: {
@@ -54,7 +53,7 @@
       Swiper
     },
     onShareAppMessage (object) {
-      object.title = '在线ELB'
+      object.title = '幸运彩票小程序'
       object.path = '/pages/index/main'
       object.imageUrl = 'https://mtms.letsit.vip/share.jpg'
       return object
@@ -89,42 +88,11 @@
       }
     },
     methods: {
-      toLinelibrary () {
-        wx.navigateTo({
-          url: '/pages/applyQrcode/main'
-        })
-      },
-      getlibrarys () {
-        API.library.list(this.filter).then((res) => {
+      getlotteryStations () {
+        API.lotteryStation.list(this.filter).then((res) => {
           this.domain = res.data
+          this.total = Math.ceil(res.page.cnt / res.page.ps)
         }).catch(() => {
-        })
-      },
-      toLine () {
-        wx.navigateTo({
-          url: '/pages/mybook/main'
-        })
-      },
-      toLineUp () {
-        wx.switchTab({
-          url: '/pages/queue/main'
-        })
-      },
-      toQueue () {
-        wx.navigateTo({
-          url: '/pages/queueOrderList/main'
-        })
-      },
-      checkUser (e) {
-        let that = this
-        loginInfo(e, this, function () {
-          that.user = wx.getStorageSync('user')
-          wx.setStorageSync('phoneNumber', that.user.mobile)
-          API.order.queue({phoneNumber: that.user.mobile, IsQueue: true}).then(res => {
-            console.log('我的所有预约', res)
-            that.queues = res.data
-            this.queueTotal = res.total
-          })
         })
       },
       changeRange (e) {
@@ -132,12 +100,13 @@
         this.val1 = e.mp.detail
         this.checkLocation()
       },
-      wxLocation (address, getshops) {
+      wxLocation (address, getLotteryStations) {
         wx.chooseLocation({
           success: function (res) {
             address = res
+            wx.setStorageSync('lnglat', JSON.stringify(res))
             wx.setStorageSync('address', res.address)
-            getshops(res)
+            getLotteryStations(res)
           },
           fail: function () {
             wx.getSetting({
@@ -161,7 +130,7 @@
                               wx.chooseLocation({
                                 success: function (res) {
                                   wx.setStorageSync('address', res)
-                                  getshops(res)
+                                  getLotteryStations(res)
                                 }
                               })
                             } else {
@@ -204,48 +173,53 @@
       },
       checkLocation () {
         if (wx.getStorageSync('address') === '') {
-          this.wxLocation(this.address, this.getshop)
+          this.wxLocation(this.address, this.getLotteryStation)
+        } else {
+          if (wx.getStorageSync('lnglat')) {
+            this.p = +1
+            this.getLotteryStation(JSON.parse(wx.getStorageSync('lnglat')))
+          }
         }
       },
       search (param) {
         this.searchKey = param.mp.detail
-        this.getshop(this.lnglat, null)
+        this.getLotteryStation(this.lnglat, null)
       },
-      getshop (lnglat, address) {
+      getLotteryStation (lnglat, address) {
         if (lnglat.longitude && lnglat.latitude) {
           this.lnglat = lnglat
         } else {
           lnglat = this.lnglat
         }
-        // let param = {
-        //   lng: lnglat.longitude + '',
-        //   Lat: lnglat.latitude + '',
-        //   name: this.searchKey,
-        //   dis: this.val1
-        // }
-        // param = Object.assign(this.filter, param)
-        // API.wxshop.getShopListByLngLat(param).then((res) => {
-        //   if (this.filter.p > 1) {
-        //     this.domain.push(...res.data)
-        //   } else {
-        //     this.domain = res.data
-        //   }
-        //   console.log('this.domain-=======>', this.domain)
-        //   // 总页数
-        //   this.total = Math.ceil(res.page.cnt / res.page.ps)
-        //   // this.domain = res.data
-        //   for (let d of this.domain) {
-        //     d.distanceDisplay = d.distance
-        //     if (d.distance < 1000) {
-        //       d.distanceDisplay = d.distance.toFixed(2) + '米'
-        //     } else {
-        //       let dis = d.distance / 1000
-        //       d.distanceDisplay = dis.toFixed(2) + '公里'
-        //     }
-        //   }
-        // }).catch((err) => {
-        //   console.log(err)
-        // })
+        let param = {
+          lng: lnglat.longitude + '',
+          Lat: lnglat.latitude + '',
+          name: this.searchKey,
+          dis: this.val1
+        }
+        param = Object.assign(this.filter, param)
+        API.lotteryStation.list(param).then((res) => {
+          if (this.filter.p > 1) {
+            this.domain.push(...res.data)
+          } else {
+            this.domain = res.data
+          }
+          console.log('this.domain-=======>', this.domain)
+          // 总页数
+          this.total = Math.ceil(res.page.cnt / res.page.ps)
+          this.domain = res.data
+          for (let d of this.domain) {
+            d.distanceDisplay = d.distance
+            if (d.distance < 1000) {
+              d.distanceDisplay = d.distance.toFixed(2) + '米'
+            } else {
+              let dis = d.distance / 1000
+              d.distanceDisplay = dis.toFixed(2) + '公里'
+            }
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
       },
       toDetail (itemId) {
         wx.navigateTo({
@@ -256,21 +230,6 @@
         getApp().globalData.activeIndex = item
         wx.switchTab({
           url: '/pages/kind/main'
-        })
-      },
-      loadData () {
-        let filter = this.filter
-        filter.shopId = this.shopId
-        API.items.list(filter).then((res) => {
-          wx.stopPullDownRefresh()
-          if (this.filter.p > 1) {
-            this.domain.push(...res.data)
-          } else {
-            this.domain = res.data
-          }
-          // 总页数
-          this.total = Math.ceil(res.page.cnt / res.page.ps)
-        }).catch(() => {
         })
       },
       toSelect (id, index) {
@@ -288,9 +247,7 @@
     },
     onPullDownRefresh () {
       console.log('下拉刷新')
-      // 初始化页码
       this.filter.p = 1
-      // this.loadData()
       this.checkLocation()
     },
     onReachBottom () {
@@ -298,13 +255,14 @@
         console.log('上拉数据加载完了')
       } else {
         // 下一页
+        console.log('开始加载')
         this.filter.p = this.filter.p + 1
         this.checkLocation()
       }
     },
     mounted () {
       this.address = wx.getStorageSync('address')
-      this.getlibrarys()
+      this.getlotteryStations()
     },
     onShow () {
       this.checkLocation()
