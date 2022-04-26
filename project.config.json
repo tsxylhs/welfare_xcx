@@ -1,180 +1,180 @@
 {
-    "description": "项目配置文件。",
-    "setting": {
-        "urlCheck": false,
-        "es6": true,
-        "enhance": true,
-        "postcss": false,
-        "preloadBackgroundData": false,
-        "minified": true,
-        "newFeature": true,
-        "coverView": true,
-        "nodeModules": false,
-        "autoAudits": false,
-        "showShadowRootInWxmlPanel": true,
-        "scopeDataCheck": false,
-        "uglifyFileName": false,
-        "checkInvalidKey": true,
-        "checkSiteMap": true,
-        "uploadWithSourceMap": true,
-        "compileHotReLoad": false,
-        "lazyloadPlaceholderEnable": false,
-        "useMultiFrameRuntime": true,
-        "useApiHook": true,
-        "useApiHostProcess": true,
-        "babelSetting": {
-            "ignore": [],
-            "disablePlugins": [],
-            "outputPath": ""
-        },
-        "enableEngineNative": false,
-        "useIsolateContext": true,
-        "userConfirmedBundleSwitch": false,
-        "packNpmManually": false,
-        "packNpmRelationList": [],
-        "minifyWXSS": true,
-        "disableUseStrict": false,
-        "minifyWXML": true,
-        "showES6CompileOption": false,
-        "useCompilerPlugins": false
+  "description": "项目配置文件。",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": false,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "lazyloadPlaceholderEnable": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
     },
-    "miniprogramRoot": "dist/wx/",
-    "compileType": "miniprogram",
-    "appid": "wxf18ea67803d92fcd",
-    "projectname": "welfareLottery",
-    "simulatorType": "wechat",
-    "simulatorPluginLibVersion": {},
-    "condition": {
-        "search": {
-            "list": []
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "disableUseStrict": false,
+    "minifyWXML": true,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false
+  },
+  "miniprogramRoot": "dist/wx/",
+  "compileType": "miniprogram",
+  "appid": "wxf18ea67803d92fcd",
+  "projectname": "welfareLottery",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/kind/main",
+          "pathName": "pages/kind/main",
+          "query": "kind",
+          "scene": null
         },
-        "conversation": {
-            "list": []
+        {
+          "id": -1,
+          "name": "pages/productDetail/main",
+          "pathName": "pages/productDetail/main",
+          "query": "detail",
+          "scene": null
         },
-        "plugin": {
-            "list": []
+        {
+          "id": -1,
+          "name": "pages/cart/main",
+          "pathName": "pages/cart/main",
+          "query": "cart",
+          "scene": null
         },
-        "game": {
-            "currentL": -1,
-            "list": []
+        {
+          "id": -1,
+          "name": "pages/order/main",
+          "pathName": "pages/order/main",
+          "query": "order",
+          "scene": null
         },
-        "gamePlugin": {
-            "list": []
+        {
+          "id": -1,
+          "name": "pages/orderDetail/main",
+          "pathName": "pages/orderDetail/main",
+          "query": "orderDetail",
+          "scene": null
         },
-        "miniprogram": {
-            "list": [
-                {
-                    "id": -1,
-                    "name": "pages/kind/main",
-                    "pathName": "pages/kind/main",
-                    "query": "kind",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/productDetail/main",
-                    "pathName": "pages/productDetail/main",
-                    "query": "detail",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/cart/main",
-                    "pathName": "pages/cart/main",
-                    "query": "cart",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/order/main",
-                    "pathName": "pages/order/main",
-                    "query": "order",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/orderDetail/main",
-                    "pathName": "pages/orderDetail/main",
-                    "query": "orderDetail",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/orderStatus/main",
-                    "pathName": "pages/orderStatus/main",
-                    "query": "orderStatus",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/orderCreator/main",
-                    "pathName": "pages/orderCreator/main",
-                    "query": "orderCreator",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/orderPaid/main",
-                    "pathName": "pages/orderPaid/main",
-                    "query": "orderPaid",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/supplierDetail/main",
-                    "pathName": "pages/supplierDetail/main",
-                    "query": "supplierDetail",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/supplierInf/main",
-                    "pathName": "pages/supplierInf/main",
-                    "query": "supplierInf",
-                    "scene": null
-                },
-                {
-                    "id": 10,
-                    "name": "pages/restaurant/main",
-                    "pathName": "pages/restaurant/main",
-                    "query": "scene=shopId%3D1218817488335147008",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/user/main",
-                    "pathName": "pages/user/main",
-                    "query": "scene=shopId%3D1213022561416253440",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/user/main",
-                    "pathName": "pages/user/main",
-                    "query": "scene=shopId%3D1218817488335147008",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/addNotes/main",
-                    "pathName": "pages/addNotes/main",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/applyQrcode/main",
-                    "pathName": "pages/applyQrcode/main",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "pages/order/main",
-                    "pathName": "pages/order/main",
-                    "scene": null
-                }
-            ]
+        {
+          "id": -1,
+          "name": "pages/orderStatus/main",
+          "pathName": "pages/orderStatus/main",
+          "query": "orderStatus",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/orderCreator/main",
+          "pathName": "pages/orderCreator/main",
+          "query": "orderCreator",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/orderPaid/main",
+          "pathName": "pages/orderPaid/main",
+          "query": "orderPaid",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplierDetail/main",
+          "pathName": "pages/supplierDetail/main",
+          "query": "supplierDetail",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/supplierInf/main",
+          "pathName": "pages/supplierInf/main",
+          "query": "supplierInf",
+          "scene": null
+        },
+        {
+          "id": 10,
+          "name": "pages/restaurant/main",
+          "pathName": "pages/restaurant/main",
+          "query": "scene=shopId%3D1218817488335147008",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user/main",
+          "pathName": "pages/user/main",
+          "query": "scene=shopId%3D1213022561416253440",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user/main",
+          "pathName": "pages/user/main",
+          "query": "scene=shopId%3D1218817488335147008",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/addNotes/main",
+          "pathName": "pages/addNotes/main",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/applyQrcode/main",
+          "pathName": "pages/applyQrcode/main",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order/main",
+          "pathName": "pages/order/main",
+          "scene": null
         }
+      ]
     }
+  }
 }

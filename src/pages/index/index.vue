@@ -31,13 +31,13 @@
       .first-padding
         .d-flex.border-bottom.pa( v-if="domain.length !== 0" v-for="(item, index) in domain" :key="index" @click="onChange(item)")
           //img( :src="item.cover.prefixUri + item.cover.relativePath" style="width:60px;height:60px")
-          img(:src="item.imageUrl" style="width:60px;height:60px")
+          img(:src="item.image_url" style="width:60px;height:60px")
           .df-col-jb.flex-1.ml-20p
             div.df-row-jb
               .fs-16.flex-1(style="font-weight:bold") {{item.name}}
             .df-row-jb.mt-10p.text-dark
               .fs-14.flex-1.text-overflow2 {{item.location}}
-              .fs-14.ml-10p {{item.distance }}
+              .fs-14.ml-10p {{item.distanceDisplay }}
     van-toast#van-toast
 </template>
 
@@ -90,13 +90,25 @@
     methods: {
       getlotteryStations () {
         API.lotteryStation.list(this.filter).then((res) => {
-          this.domain = res.data
-          this.total = Math.ceil(res.page.cnt / res.page.ps)
+          if (res.data) {
+            this.domain = res.data
+            this.total = Math.ceil(res.page.cnt / res.page.ps)
+            for (let d of this.domain) {
+              d.distanceDisplay = d.distance
+              if (d.distance < 1000) {
+                d.distanceDisplay = d.distance.toFixed(2) + '米'
+              } else {
+                let dis = d.distance / 1000
+                d.distanceDisplay = dis.toFixed(2) + '公里'
+              }
+            }
+          }
         }).catch(() => {
         })
       },
       changeRange (e) {
         this.domain = []
+        this.searchKey = ''
         this.val1 = e.mp.detail
         this.checkLocation()
       },
@@ -193,28 +205,29 @@
         }
         let param = {
           lng: lnglat.longitude + '',
-          Lat: lnglat.latitude + '',
+          lat: lnglat.latitude + '',
           name: this.searchKey,
           dis: this.val1
         }
         param = Object.assign(this.filter, param)
         API.lotteryStation.list(param).then((res) => {
-          if (this.filter.p > 1) {
-            this.domain.push(...res.data)
-          } else {
-            this.domain = res.data
-          }
-          console.log('this.domain-=======>', this.domain)
-          // 总页数
-          this.total = Math.ceil(res.page.cnt / res.page.ps)
-          this.domain = res.data
-          for (let d of this.domain) {
-            d.distanceDisplay = d.distance
-            if (d.distance < 1000) {
-              d.distanceDisplay = d.distance.toFixed(2) + '米'
+          if (res.data) {
+            if (this.filter.p > 1) {
+              this.domain.push(...res.data)
             } else {
-              let dis = d.distance / 1000
-              d.distanceDisplay = dis.toFixed(2) + '公里'
+              this.domain = res.data
+            }
+            console.log('this.domain-=======>', this.domain)
+            // 总页数
+            this.total = Math.ceil(res.page.cnt / res.page.ps)
+            for (let d of this.domain) {
+              d.distanceDisplay = d.distance
+              if (d.distance < 1000) {
+                d.distanceDisplay = d.distance.toFixed(2) + '米'
+              } else {
+                let dis = d.distance / 1000
+                d.distanceDisplay = dis.toFixed(2) + '公里'
+              }
             }
           }
         }).catch((err) => {
