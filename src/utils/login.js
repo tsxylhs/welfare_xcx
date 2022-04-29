@@ -1,45 +1,69 @@
 import API from '@/api/api'
 
-export function loginInfo (e, t, reback) {
-  if (e.mp.detail.userInfo) {
-    console.log(e.mp.detail.userInfo)
-    t.userInfo = e.mp.detail.userInfo
-    t.isHide = false
-    doLogin(t, reback)
-  } else {
-  }
-}
-
-function doLogin (t, reback) {
-  let that = t
+export function loginInfo (reback) {
+  // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+  // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+  let code = ''
+  wx.login({
+    success: (res) => {
+      code = res.code
+    }
+  })
+  // 获取用户信息
   wx.getUserProfile({
-    success (res) {
-      that.userInfo = res.userInfo
-      debugger
-      console.log('UserInfo', res.userInfo)
-      wx.login({
-        success: function (res) {
-          if (res.code) {
-            wx.setStorageSync('code', res.code)
-            that.userInfo.code = res.code
-            console.log('携带 userinfo 登录', res)
-            API.login(that.userInfo).then((res) => {
-              that.user = res
-              wx.setStorageSync('user', res)
-              reback()
-            }).catch(() => {
-            })
-          } else {
-            console.log('获取用户登录信息失败！')
-          }
-        }
+    lang: 'zh_CN',
+    desc: '用户登录',
+    success: (res) => {
+      let loginParams = {
+        code: code,
+        encryptedData: res.encryptedData,
+        iv: res.iv,
+        rawData: res.rawData,
+        signature: res.signature
+      }
+      API.login(loginParams).then((res) => {
+        wx.setStorageSync('user', res)
+        reback()
+      }).catch((err) => {
+        console.log(err)
       })
     },
-    fail (err) {
-      console.log(err)
+    // 失败回调
+    fail: () => {
     }
   })
 }
+
+// function doLogin (t, reback) {
+//   let that = t
+//   wx.getUserProfile({
+//     success (res) {
+//       that.userInfo = res.userInfo
+//       debugger
+//       console.log('UserInfo', res.userInfo)
+//       wx.login({
+//         success: function (res) {
+//           if (res.code) {
+//             wx.setStorageSync('code', res.code)
+//             that.userInfo.code = res.code
+//             console.log('携带 userinfo 登录', res)
+//             API.login(that.userInfo).then((res) => {
+//               that.user = res
+//               wx.setStorageSync('user', res)
+//               reback()
+//             }).catch(() => {
+//             })
+//           } else {
+//             console.log('获取用户登录信息失败！')
+//           }
+//         }
+//       })
+//     },
+//     fail (err) {
+//       console.log(err)
+//     }
+//   })
+// }
 
 export function CallPhone (Message) {
   wx.makePhoneCall({

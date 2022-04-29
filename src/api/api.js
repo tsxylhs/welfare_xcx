@@ -6,7 +6,10 @@ var API = {}
 API.user = crud('/v1/user')
 API.address = crud('/v1/address')
 API.lotteryStation = crud('/v1/lotteryStation')
-
+API.lucky = crud('/v1/lucky')
+API.lucky.generateLuckyData = function (param) {
+  return fly.get('/v1/generateLuckyData', param)
+}
 API.login = function (param) {
   return fly.post('/v1/user/login', param)
 }

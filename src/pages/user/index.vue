@@ -10,10 +10,6 @@
               .df-row-ac
                 .pf-title {{user.nickName}}
                 .border.px-10p.py-5p.ml-10p.text-dark.fs-12( v-if="disable" plain size="mini" @click="toInf") 修改
-              //.df-row-ac.mt-5p
-                .merchant
-                .text-muted.ml-5p(v-if="!shopId")  当前:{{user.shopName || '未设置门店'}}
-                .text-muted.ml-5p(v-if="shop.name")  当前:{{shop.name || '未设置门店'}}
               button.btn-main(v-if="!user" open-type="getUserInfo" @getuserinfo="bindGetUserInfo" lang="zh_CN" type="primary" round @click="bindGetUserInfo") 微信授权登录
         .shadow.borRadius-5.p-20p.mt-20p
           .df-row-ac-jb

@@ -3,13 +3,13 @@
     nav-bar(:title="'Welfare lottery'")
     .bg-top.w-100.df-row-jc(style="position: relative")
       .bg-white.py-20p.w-90.border.borRadius-5.shadow.df-row-ac-jb.buttonBg(style="position: absolute;bottom:5%")
-        .flex-1.df-col-ac.px-10p.border-right(@click="")
+        .flex-1.df-col-ac.px-10p.border-right(@click="tomylottery")
           .icon-delivery
           .mt-10p.text-black 我的彩票
         .flex-1.df-col-ac.px-10p.border-right(@click="")
           .icon-qrcode
           .mt-10p.text-black 已开奖
-        .flex-1.df-col-ac.px-10p.border-right(@click="")
+        .flex-1.df-col-ac.px-10p.border-right(@click="tolucky")
           .calendar
           .mt-10p.text-black 幸运数
         div.flex-1.df-col-ac(@click="")
@@ -88,6 +88,16 @@
       }
     },
     methods: {
+      tomylottery () {
+        wx.navigateTo({
+          url: '/pages/mylottery/main'
+        })
+      },
+      tolucky () {
+        wx.navigateTo({
+          url: '/pages/lucky/main'
+        })
+      },
       getlotteryStations () {
         API.lotteryStation.list(this.filter).then((res) => {
           if (res.data) {

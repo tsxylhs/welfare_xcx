@@ -5,7 +5,7 @@
 
       .mt-20p.df-col-ac-jc(v-if="domain.length === 0&&user")
         span 暂未购买彩票
-        span 
+        span
       .first-padding
         .d-flex.p-20p.border-bottom.pa( v-if="domain.length !== 0" v-for="(item, index) in domain" :key="index" @click="onChange(item)")
           //img( :src="item.cover.prefixUri + item.cover.relativePath" style="width:60px;height:60px")
@@ -42,7 +42,7 @@
       Swiper
     },
     onShareAppMessage (object) {
-      object.title = 'ELB'
+      object.title = 'welfare'
       object.path = '/pages/index/main'
       object.imageUrl = 'https://mtms.letsit.vip/share.jpg'
       return object

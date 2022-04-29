@@ -358,28 +358,28 @@ button {
 .home-nav {
   width: 24px;
   height: 24px;
-  background: url('https://srxianzhangmen.com/home-nav.jpg') no-repeat 50%;
+  background: url('../../static/images/home.jpg') no-repeat 50%;
   background-size: contain;
 }
 
 .back {
   width: 24px;
   height: 24px;
-  background: url('https://srxianzhangmen.com/back.jpg') no-repeat 0%;
+  background: url('../../static/images/back.jpg') no-repeat 0%;
   background-size: contain;
 }
 
 .home-w {
   width: 24px;
   height: 24px;
-  background: url('https://srxianzhangmen.com/home_w.jpg') no-repeat 50%;
+  background: url('../../static/images/home.jpg') no-repeat 50%;
   background-size: contain;
 }
 
 .back-w {
   width: 24px;
   height: 24px;
-  background: url('https://srxianzhangmen.com/back_w.jpg') no-repeat 0%;
+  background: url('../../static/images/back.jpg') no-repeat 0%;
   background-size: contain;
 }
 
@@ -472,80 +472,17 @@ button {
   height: 24px;
 }
 
-.commodity1 {
-  width: 90px;
-  height: 108px;
-  background: url('http://pic.yupoo.com/willerhe/45a5ed9d/ad123691.jpg') no-repeat 50%;
-  background-size: contain;
-}
+
 
 .cover {
   width: 90px;
   height: 90px;
 }
 
-.commodity2 {
-  width: 90px;
-  height: 108px;
-  background: url('http://pic.yupoo.com/willerhe/e4925538/41610ea4.jpg') no-repeat 50%;
-  background-size: contain;
-}
 
-.commodity3 {
-  width: 90px;
-  height: 108px;
-  background: url('http://pic.yupoo.com/willerhe/6cb5ae1c/8c614828.jpg') no-repeat 50%;
-  background-size: contain;
-}
 
-.banner {
-  width: 345px;
-  height: 90px;
-  background: url('https://srxianzhangmen.com/bn.jpg') no-repeat 50%;
-  background-size: contain;
-}
 
-.cart {
-  width: 32px;
-  height: 32px;
-  background: url('https://srxianzhangmen.com/cart.jpg') no-repeat 50%;
-  background-size: contain;
-}
 
-.home-shot1 {
-  width: 36px;
-  height: 36px;
-  background: url('https://srxianzhangmen.com/home_shot1.jpg') no-repeat 50%;
-  background-size: contain;
-}
-
-.home-shot2 {
-  width: 36px;
-  height: 36px;
-  background: url('https://srxianzhangmen.com/home_shot2.jpg') no-repeat 50%;
-  background-size: contain;
-}
-
-.home-shot3 {
-  width: 36px;
-  height: 36px;
-  background: url('https://srxianzhangmen.com/home_shot3.jpg') no-repeat 50%;
-  background-size: contain;
-}
-
-.merchant {
-  width: 16px;
-  height: 16px;
-  background: url('https://srxianzhangmen.com/merchant.png') no-repeat 0%;
-  background-size: contain;
-}
-
-.checked {
-  width: 18px;
-  height: 18px;
-  background: url('https://srxianzhangmen.com/checked.png') no-repeat 0%;
-  background-size: contain;
-}
 
 .wh-16p {
   width: 16px;
@@ -564,100 +501,6 @@ button {
   background: #F1F3F8;
 }
 
-.cancel {
-  @extend .wh-24p;
-  background: url('https://srxianzhangmen.com/cancel.jpg') no-repeat 0%;
-  background-size: contain;
-}
-
-.arrow {
-  @extend .wh-16p;
-  background: url('https://srxianzhangmen.com/arrow.jpg') no-repeat 50%;
-  background-size: contain;
-}
-
-.order1 {
-  width: 32px;
-  height: 32px;
-  background: url('https://srxianzhangmen.com/account_order1.png') no-repeat 50%;
-  background-size: contain;
-}
-
-.order2 {
-  width: 32px;
-  height: 32px;
-  background: url('https://srxianzhangmen.com/account_order2.png') no-repeat 50%;
-  background-size: contain;
-}
-
-.order3 {
-  width: 32px;
-  height: 32px;
-  background: url('https://srxianzhangmen.com/account_order3.png') no-repeat 50%;
-  background-size: contain;
-}
-
-.order4 {
-  width: 32px;
-  height: 32px;
-  background: url('https://srxianzhangmen.com/account_order4.png') no-repeat 50%;
-  background-size: contain;
-}
-.order5 {
-  width: 32px;
-  height: 32px;
-  background: url('https://mtms.letsit.cn/order5.png') no-repeat 50%;
-  background-size: contain;
-}
-
-.aboutdr {
-  @extend .wh-24p;
-  background: url('https://srxianzhangmen.com/aboutdr.png') no-repeat 50%;
-  background-size: contain;
-}
-
-.me_phone {
-  @extend .wh-24p;
-  background: url('https://srxianzhangmen.com/me_phone.png') no-repeat 50%;
-  background-size: contain;
-}
-
-.customer {
-  @extend .wh-24p;
-  background: url('https://srxianzhangmen.com/customer.png') no-repeat 50%;
-  background-size: contain;
-}
-
-.share {
-  @extend .wh-24p;
-  background: url('https://srxianzhangmen.com/share.jpg') no-repeat 0%;
-  background-size: contain;
-}
-
-.delivery {
-  @extend .wh-24p;
-  background: url('https://srxianzhangmen.com/delivery.png') no-repeat 50%;
-  background-size: contain;
-}
-
-.info {
-  @extend .wh-24p;
-  background: url('https://srxianzhangmen.com/info.png') no-repeat 50%;
-  background-size: contain;
-}
-
-
-.line {
-  height: 3px;
-  background: url('https://srxianzhangmen.com/line.jpg') no-repeat 0%;
-  background-size: cover;
-}
-
-.edit {
-  @extend .wh-24p;
-  background: url('https://srxianzhangmen.com/edit.jpg') no-repeat 0%;
-  background-size: cover;
-}
 
 .last-border:not(:last-child) {
   border-bottom: 1px $border-solid-grey;
@@ -668,19 +511,7 @@ button {
   border-bottom: 2px $border-solid-grey;
 }
 
-.success {
-  width: 48px;
-  height: 48px;
-  background: url('https://srxianzhangmen.com/success.png') no-repeat 50%;
-  background-size: contain;
-}
 
-.supplier {
-  width: 375px;
-  height: 190px;
-  background: url('https://srxianzhangmen.com/supplier.jpg') no-repeat 50%;
-  background-size: cover;
-}
 
 
 //两行溢出省略
@@ -695,78 +526,19 @@ button {
 }
 
 
-.red-arrow {
-  @extend .wh-16p;
-  background: url('https://srxianzhangmen.com/red_arrow.jpg') no-repeat 50%;
-  background-size: cover;
-}
 
-.cart-order {
-  width: 24px;
-  height: 24px;
-  background: url('https://srxianzhangmen.com/cart_order.jpg') no-repeat 0%;
-  background-size: contain;
-}
-
-.supplier-order {
-  width: 24px;
-  height: 24px;
-  background: url('https://srxianzhangmen.com/supplier_order.jpg') no-repeat 0%;
-  background-size: contain;
-}
 
 .text-indent {
   text-indent: 2em
 }
 
-.ep-cart {
-  width: 100px;
-  height: 80px;
-  background: url('https://srxianzhangmen.com/epcart.png') no-repeat 50%;
-  background-size: cover;
-}
 
-.ep-order {
-  width: 100px;
-  height: 80px;
-  background: url('https://srxianzhangmen.com/ep_order.jpg') no-repeat 50%;
-  background-size: cover;
-}
-
-.ep-address {
-  width: 100px;
-  height: 80px;
-  background: url('https://srxianzhangmen.com/ep_address.jpg') no-repeat 50%;
-  background-size: cover;
-}
 
 .thumb {
   width: 375px;
 }
 
-.detail {
-  width: 375px;
-  height: 240px;
-  background: url('https://srxianzhangmen.com/detail.jpg') no-repeat 50%;
-  background-size: cover;
 
-}
-
-.crab {
-  width: 375px;
-  height: 240px;
-  background: url('https://srxianzhangmen.com/crab.jpg') no-repeat 50%;
-  background-size: cover;
-
-}
-
-.service {
-  width: 320px;
-  height: 90px;
-  background: url('https://srxianzhangmen.com/service.jpg') no-repeat 50%;
-  background-size: cover;
-
-}
 
 .swiper {
   position: relative !important;
@@ -775,57 +547,17 @@ button {
 }
 
 
-.resa {
-  width: 24px;
-  height: 24px;
-  background: url('https://mtms.letsit.vip/resa.jpg') no-repeat 50%;
-  background-size: cover;
-}
+
 
 .bg-mine {
   background: #394563;
-}
-
-.bind {
-  width: 150px;
-  height: 70px;
-  background: url('https://mtms.letsit.vip/bind.jpg') no-repeat 50%;
-  background-size: cover;
-}
-
-.bind-res {
-  width: 300px;
-  height: 120px;
-  background: url('https://mtms.letsit.vip/bind_res.jpg') no-repeat 50%;
-  background-size: cover;
 }
 
 .text-3 {
   color: #333333 !important
 }
 
-.me-phone {
-  width: 24px;
-  height: 24px;
-  background: url('https://srxianzhangmen.com/me_phone.png') no-repeat 50%;
-  background-size: cover;
 
-}
-
-.edit-phone {
-  width: 24px;
-  height: 24px;
-  background: url('https://srxianzhangmen.com/editPhone.png') no-repeat 50%;
-  background-size: cover;
-
-}
-.shop-banner{
-  background-image: url("https://mtms.letsit.vip/bnbg.png");
-  background-repeat: no-repeat;
-  width:100%;
-  background-size: contain;
-
-}
 .shareBg button {
   background-color: transparent;
   font-size: 28 rpx !important;
@@ -836,19 +568,6 @@ button {
 .shareBg button::after {
   border: 0 !important;
   border-radius: 0px !important;
-}
-.line-up {
-  width: 345px;
-  height: 75px;
-  background: url('https://mtms.letsit.vip/line_up.jpg') no-repeat 50%;
-  background-size: contain;
-
-}
-.shop-bg {
-  height: 90px;
-  background: url('https://mtms.letsit.vip/shop_bg.jpg') no-repeat 50%;
-  background-size: cover;
-
 }
 
 .buttonBg button {
@@ -861,38 +580,6 @@ button {
 .buttonBg button::after {
   border: 0 !important;
   border-radius: 0px !important;
-}
-.location {
-  width: 24px;
-  height: 24px;
-  background: url('https://mtms.letsit.vip/storencp/location.jpg') no-repeat 50%;
-  background-size: contain;
-}
-.circle-phone {
-  width: 24px;
-  height: 24px;
-  background: url('https://mtms.letsit.vip/storencp/circle_phone.jpg') no-repeat 50%;
-  background-size: contain;
-}
-.pd {
-  width: 160px;
-  height: 120px;
-  background: url('https://mtms.letsit.vip/storencp/pd.png') no-repeat 50%;
-  background-size: contain;
-}
-
-.red-success {
-  width: 80px;
-  height: 80px;
-  background: url('https://mtms.letsit.vip/storencp/red_success.jpg') no-repeat 50%;
-  background-size: contain;
-}
-
-.appointment-bg {
-  //width:375px;
-  height: 90px;
-  background: url('https://mtms.letsit.vip/storencp/appointment_bg.jpg') no-repeat 0%;
-  background-size: cover;
 }
 
 .bg-top {
@@ -925,12 +612,7 @@ button {
   background: url('../../static/images/dprize.png') no-repeat 0%;
   background-size: cover;
 }
-.queue-none {
-  width:230px;
-  height: 115px;
-  background: url('https://mtms.letsit.vip/storencp/queue_none.jpg') no-repeat 0%;
-  background-size: cover;
-}
+
 .shadow-bg {
   height: 32px;
   background: url('../../static/images/shadow_bg.jpg') no-repeat 0%;

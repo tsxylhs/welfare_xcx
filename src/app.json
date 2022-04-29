@@ -6,7 +6,8 @@
     "pages/user/main",
     "pages/dprize/main",
     "pages/lotteryList/main",
-    "pages/mylottery/main"
+    "pages/mylottery/main",
+    "pages/lucky/main"
   ],
   "window": {
     "backgroundTextStyle": "dark",

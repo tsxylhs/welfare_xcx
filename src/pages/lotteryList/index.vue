@@ -38,7 +38,7 @@
     },
     methods: {
       checkUser (e) {
-        loginInfo(e, this, this.viewMyQueue)
+        loginInfo(this.viewMyQueue)
       },
       toLineUpShop () {
         wx.navigateTo({
