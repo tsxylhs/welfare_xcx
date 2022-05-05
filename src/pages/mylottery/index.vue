@@ -7,24 +7,24 @@
         span 暂未购买彩票
         span
       .first-padding
-        .d-flex.p-20p.border-bottom.pa( v-if="domain.length !== 0" v-for="(item, index) in domain" :key="index" @click="onChange(item)")
+        .d-flex.p-20p.border-bottom.pa( v-if="domain.length !== 0" v-for="(item, index) in domain" :key="index" )
           //img( :src="item.cover.prefixUri + item.cover.relativePath" style="width:60px;height:60px")
-          img(:src="item.book.image" style="width:60px;height:60px")
+          //img(:src="item.book.image" style="width:60px;height:60px")
           .df-col-jb.flex-1.ml-20p
             .df-row-jb
-              .fs-16.flex-1(style="font-weight:bold") {{item.book.name}}
-              .fs-12.flex-1 {{item.library.name}}
+              .fs-16.flex-1(style="font-weight:bold") {{item.type_name}}
+              .fs-12.flex-1 {{item.lucky_data}}
             .df-row-jb.mt-10p.text-dark
-              .fs-14.flex-1.text-overflow2 {{item.library.address}}
-              .fs-14.ml-10p(style="color:#0066CC" @click="deleteNotes(item)") 对奖
-              .fs-14.ml-10p(style="color:#0066CC" @click="addNotes(item)") 添加购彩记录
+              .fs-14.flex-1.text-overflow2 购买日期： {{item.crt}}
+              .fs-14.ml-10p(style="color:#0066CC" @click="checkLuckyData(item)") 对奖
       .w-100.mt-50p(v-if="!user")
         .df-col-ac.p-20p
           .login-none
           .mt-10p 请先登录，以查看购彩记录。
           button.btn-main.mt-10p(v-if="!user" open-type="getUserInfo" @getuserinfo="checkUser" lang="zh_CN" type="primary" round @click="checkUser") 微信授权登录
 
-
+    van-dialog(use-slot title="请输入期号" :show="show"  show-cancel-button confirm-button-open-type="checkLucky" @close="onClose" @confirm="checkLucky" width="680px")
+      van-field(v-model="value" placeholder="请输入期号" @change="handleValue")
     van-toast#van-toast
 </template>
 
@@ -49,6 +49,8 @@
     },
     data () {
       return {
+        value:'',
+        show:false,
         user: {},
         lnglat: {},
         searchKey: '',
@@ -66,18 +68,36 @@
         data: Data,
         shopId: '0',
         filter: {ps: 10, p: 1},
-        total: 0
+        total: 0,
+        itemVal: {}
       }
     },
     methods: {
-      checkUser (e) {
-        loginInfo(e, this, this.getBooks)
+      handleValue (e){
+       this.value = e.mp.detail
       },
-      deleteNotes (item) {
-        API.mybooks.delete(item.id).then((res) => {
-          console.log(res)
-        }).catch(() => {
-        })
+      checkLucky (){
+        this.show=false
+        console.log('check')
+        console.log('val'+this.value)
+        console.log('item'+this.itemVal.id)
+
+      },
+      onClose (){
+        console.log('close')
+        this.show = false
+      },
+      checkUser (e) {
+        loginInfo(e, this, this.getluckyData)
+      },
+      checkLuckyData (item) {
+        this.show = true
+        this.itemVal=item
+        console.log('兑奖')
+        // API.lucky.delete(item.id).then((res) => {
+        //   console.log(res)
+        // }).catch(() => {
+        // })
       },
       addNotes (item) {
         wx.navigateTo({
@@ -89,11 +109,11 @@
         this.val1 = e.mp.detail
         this.checkLocation()
       },
-      getBooks () {
+      getluckyData () {
         var params = {
-          userId: this.user.id
+          user_id: this.user.id
         }
-        API.mybooks.list(params).then((res) => {
+        API.lucky.list(params).then((res) => {
           this.domain = res.data
         }).catch((err) => {
           console.log('error', err)
@@ -126,7 +146,7 @@
       this.domain = []
       this.user = wx.getStorageSync('user')
       console.log('this.user', this.user)
-      this.getBooks()
+      this.getluckyData()
       // 解决之前登录的用户没有session_key的问题
     }
   }

@@ -35,7 +35,7 @@
         .login-none
         .mt-10p(v-if="!user") 请先登录，以查看开奖信息。
         button.btn-main.mt-10p(v-if="!user" open-type="getUserInfo" @getuserinfo="checkUser" lang="zh_CN" type="primary" round @click="checkUser") 微信授权登录
-
+    van-toast#van-toast
 </template>
 
 <script>
@@ -69,9 +69,23 @@
       onChange (event) {
         this.active = event.mp.detail
       },
-      buy (type, item) {
-        console.log('type', type)
-        console.log('item', item)
+      buy (ty, item) {
+        const param = {
+            user_id:this.user.id,
+            type: ty,
+            lucky_data: item
+            }
+         API.lucky.create(param).then((res) => {
+           console.log('购买成功')
+
+         }).catch(() => {
+           console.log('失败')
+           })
+            wx.showToast({
+              title:'记录成功',
+              icon: 'success',
+              duration: 1000
+                              })
       },
       random (val) {
         const param =
@@ -120,10 +134,8 @@
     },
     onShow () {
       this.islogin = false
-      debugger
       this.user = wx.getStorageSync('user')
       if (this.user.id) {
-        debugger
         this.islogin = true
       }
     }
