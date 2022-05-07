@@ -16,7 +16,8 @@
               .fs-12.flex-1 {{item.lucky_data}}
             .df-row-jb.mt-10p.text-dark
               .fs-14.flex-1.text-overflow2 购买日期： {{item.crt}}
-              .fs-14.ml-10p(style="color:#0066CC" @click="checkLuckyData(item)") 对奖
+              .fs-14.ml-10p(v-if="item.winning_amount!=-1" style="color:#0066CC" @click="checkLuckyData(item)") 对奖
+              .fs-14.ml-10p(v-else style="color:#0066CC" @click="checked(item)") 已兑奖
       .w-100.mt-50p(v-if="!user")
         .df-col-ac.p-20p
           .login-none
@@ -81,7 +82,24 @@
         console.log('check')
         console.log('val'+this.value)
         console.log('item'+this.itemVal.id)
+        const param={
+          issue: this.value,
+          lucky_data_id: this.itemVal.id
+        }
+        API.lucky.checkLucky(param).then((res)=>{
+          wx.showToast({
+              title:'已兑奖',
+              icon: 'success',
+              duration: 1000
+                              })
+        }).catch((err)=>{
+          wx.showToast({
+              title:'兑奖失败',
+              icon: 'error',
+              duration: 1000
+                              })
 
+        })
       },
       onClose (){
         console.log('close')
@@ -90,19 +108,22 @@
       checkUser (e) {
         loginInfo(e, this, this.getluckyData)
       },
+      checked(){
+        wx.showToast({
+              title:'已兑奖',
+              icon: 'success',
+              duration: 1000
+                              })
+      },
       checkLuckyData (item) {
         this.show = true
         this.itemVal=item
         console.log('兑奖')
-        // API.lucky.delete(item.id).then((res) => {
+
+        // API.lucky.checkLucky(item.id).then((res) => {
         //   console.log(res)
         // }).catch(() => {
         // })
-      },
-      addNotes (item) {
-        wx.navigateTo({
-          url: '/pages/addNotes/main?bookId=' + item.bookId
-        })
       },
       changeRange (e) {
         this.domain = []
@@ -119,10 +140,7 @@
           console.log('error', err)
         })
       },
-      search (param) {
-        console.log('-------------------->', param.mp.detail)
-        this.searchKey = param.mp.detail
-      }
+
     },
     onPullDownRefresh () {
       console.log('下拉刷新')

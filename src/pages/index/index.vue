@@ -6,9 +6,9 @@
         .flex-1.df-col-ac.px-10p.border-right(@click="tomylottery")
           .icon-delivery
           .mt-10p.text-black 我的彩票
-        .flex-1.df-col-ac.px-10p.border-right(@click="")
+        .flex-1.df-col-ac.px-10p.border-right(@click="toawarding")
           .icon-qrcode
-          .mt-10p.text-black 已开奖
+          .mt-10p.text-black 已兑奖
         .flex-1.df-col-ac.px-10p.border-right(@click="tolucky")
           .calendar
           .mt-10p.text-black 幸运数
@@ -88,6 +88,11 @@
       }
     },
     methods: {
+      toawarding () {
+         wx.navigateTo({
+          url: '/pages/awarding/main'
+        })
+      },
       tomylottery () {
         wx.navigateTo({
           url: '/pages/mylottery/main'
