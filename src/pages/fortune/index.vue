@@ -1,30 +1,10 @@
 <template lang="pug">
-  .w-100
-    nav-bar(:title="'我的运势'" :back-visible="true" :home-path="'/pages/index/main'")
-    .mt-20p.df-col-ac-jc(v-if="domain.length === 0")
-      span 暂无
-    .first-padding
-      .d-flex.border-bottom.pa( v-if="domain.length !== 0" v-for="(item, index) in domain" :key="index" @click="onChange(item)")
-        //img( :src="item.cover.prefixUri + item.cover.relativePath" style="width:60px;height:60px")
-        img(:src="item.image" style="width:60px;height:60px")
-        .df-col-jb.flex-1.ml-20p
-          div.df-row-jb
-            .fs-16.flex-1(style="font-weight:bold") {{item.name}}
-            .fs-13.flex-1.text-pink( @click="toapply(item)") 预约位置
-          .df-row-jb.mt-10p.text-dark
-            .fs-14.flex-1.text-overflow2 {{item.address}}
-            .fs-14.ml-10p {{item.distanceDisplay }}
-      van-popup(:show="addapplyFlag", position="center",overlay="false", @close="applyClose" safe-area-inset-top="true" custom-style="width: 90%;height: 300px;border-radius: 10px !important;")
-        .p-20p.van-border.bg-dark.mt-20p
-          van-field(required clearable label="学号" placeholder="输入学号" v-model="apply.num" @change="handlenum" )
-          van-field( clearable label="姓名"  placeholder="请输入姓名" v-model="apply.name" @change="handlename" )
-          van-field(required clearable readonly label="选择"  placeholder="选择位置"  icon="arrow" v-model="apply.site" input-class="text-black" @click="choose" )
-          van-field( clearable label="预约时间"  placeholder="填写预约时间" v-model="apply.time"  @click="chooseT" )
-          van-button(size="large" round custom-class="btn-blue" @click="submint") 确认预约
-      van-popup(:show='show', position='bottom', overlay='false', @close='onClose' safe-area-inset-top="true" custom-style="height: 50% !important")
-        van-picker(show-toolbar='', v-if="resType === true" title='位置', :columns='columns', @cancel='onCancel', @confirm='TonConfirm')
-      van-popup(:show='timeshow', position='bottom', overlay='false', @close='onClose' safe-area-inset-top="true" custom-style="height: 50% !important")
-        van-datetime-picker(type='datetime'  :value='currentDate'  :min-date='minDate'  :max-date='maxDate' @cancel="cancelTime"  @confirm="timeS")
+.w-100
+  nav-bar(:title="'我的运势'" :back-visible="true" :home-path="'/pages/index/main'")
+  .mt-20p.df-col-ac-jc
+      flex
+
+</van-grid>
 
 </template>
 
